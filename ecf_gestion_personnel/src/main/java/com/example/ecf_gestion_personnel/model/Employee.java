@@ -24,12 +24,22 @@ public class Employee implements Serializable {
     private String email;
     private String phone;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_employee_position", foreignKeyDefinition = "ON DELETE SET NULL"))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(foreignKey = @ForeignKey(
+            name = "fk_employee_position",
+            foreignKeyDefinition = "FOREIGN KEY (position_id) REFERENCES Position (id) ON UPDATE RESTRICT ON DELETE SET NULL"
+        ),
+        name = "position_id"
+    )
     private Position position;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_employee_department", foreignKeyDefinition = "ON DELETE SET NULL"))
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(foreignKey = @ForeignKey(
+            name = "fk_employee_department",
+            foreignKeyDefinition = "FOREIGN KEY (department_id) REFERENCES Department (id) ON UPDATE RESTRICT ON DELETE SET NULL"
+        ),
+        name = "department_id"
+    )
     private Department department;
 
     public Position getPosition() {

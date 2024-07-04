@@ -21,7 +21,7 @@ public class Position implements Serializable {
     @Column(nullable = false, unique = true, name = "job_title")
     private String jobTitle;
 
-    @OneToMany(mappedBy = "position", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "position", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {
