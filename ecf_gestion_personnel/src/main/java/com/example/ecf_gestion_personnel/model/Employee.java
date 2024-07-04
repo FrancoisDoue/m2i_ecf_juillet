@@ -30,6 +30,7 @@ public class Employee implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
+//    @ForeignKey(name = "fk_department_employee", value = ConstraintMode.NO_CONSTRAINT)
     private Department department;
 
     public Position getPosition() {

@@ -2,7 +2,6 @@ package com.example.ecf_gestion_personnel.model;
 
 import com.example.ecf_gestion_personnel.model.map.PositionMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.annotation.PreDestroy;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +21,7 @@ public class Position implements Serializable {
     @Column(nullable = false, unique = true, name = "job_title")
     private String jobTitle;
 
-    @OneToMany(mappedBy = "position", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "position", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {
@@ -36,6 +35,7 @@ public class Position implements Serializable {
 
     @PreRemove
     public void preRemove() {
+        System.out.println("on preRemove Position");
         if (employees != null)
             employees.forEach(e -> e.setPosition(null));
     }

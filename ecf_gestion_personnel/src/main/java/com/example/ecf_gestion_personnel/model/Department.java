@@ -2,14 +2,11 @@ package com.example.ecf_gestion_personnel.model;
 
 import com.example.ecf_gestion_personnel.model.map.DepartmentMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.annotation.PreDestroy;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter @Setter
 @Builder
@@ -23,7 +20,7 @@ public class Department implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {
@@ -35,8 +32,9 @@ public class Department implements Serializable {
         return DepartmentMapper.toDTO(this);
     }
 
-    @PreDestroy
-    public void preDestroy() {
+    @PreRemove
+    public void preRemove() {
+        System.out.println("on preRemove department");
         if (employees != null)
             employees.forEach(e -> e.setDepartment(null));
     }
