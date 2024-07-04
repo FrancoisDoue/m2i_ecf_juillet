@@ -57,16 +57,16 @@ public class DepartmentResource {
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
-    @POST
-    @Path("/{id}/add")
-    public Response addEmployee(@PathParam("id") int id, Employee employee) {
-        employee = employeeService.getEmployeeById(employee.getId());
-        if (employee == null) return Response.status(Response.Status.NOT_FOUND).build();
-        Department dep = departmentService.addEmployeToDepartment(id, employee);
-        return Response
-                .status(Response.Status.CREATED)
-                .entity(dep)
-                .build();
-    }
+//    @POST
+//    @Path("/{id}/add")
+//    public Response addEmployee(@PathParam("id") int id, Employee employee) {
+//        employee = employeeService.getEmployeeById(employee.getId());
+//        if (employee == null) return Response.status(Response.Status.NOT_FOUND).build();
+//        Department dep = departmentService.addEmployeToDepartment(id, employee);
+//        return Response
+//                .status(Response.Status.CREATED)
+//                .entity(dep)
+//                .build();
+//    }
 
 }

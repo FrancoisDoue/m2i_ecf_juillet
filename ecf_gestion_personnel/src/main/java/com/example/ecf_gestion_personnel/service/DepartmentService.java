@@ -40,11 +40,11 @@ public class DepartmentService {
         );
     }
 
-    public Department addEmployeToDepartment(int departmentId, Employee employee) {
-        Department department = departmentRepository.find(departmentId);
-        department.getEmployees().add(employee);
-        departmentRepository.create(department);
-        return getDepartmentById(departmentId);
-    }
+//    public Department addEmployeToDepartment(int departmentId, Employee employee) {
+//        Department department = departmentRepository.find(departmentId);
+//        department.getEmployees().add(employee);
+//        departmentRepository.create(department);
+//        return getDepartmentById(departmentId);
+//    }
 
 }
