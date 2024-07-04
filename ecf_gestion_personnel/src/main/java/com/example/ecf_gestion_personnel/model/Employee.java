@@ -25,12 +25,11 @@ public class Employee implements Serializable {
     private String phone;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "position_id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_employee_position", foreignKeyDefinition = "ON DELETE SET NULL"))
     private Position position;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "department_id")
-//    @ForeignKey(name = "fk_department_employee", value = ConstraintMode.NO_CONSTRAINT)
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_employee_department", foreignKeyDefinition = "ON DELETE SET NULL"))
     private Department department;
 
     public Position getPosition() {
