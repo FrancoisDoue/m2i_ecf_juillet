@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="~{index::bootstrap-import}"></th:block>
+    <title>Détail de l'offre</title>
+</head>
+<body class="bg-light">
+<div th:id="main" class="min-vh-100 bg-light">
+  <th:block th:replace="~{index::header}"></th:block>
+  <main class="container" th:object="${jobOffer}">
+    <h2 th:text="*{title}"></h2>
+    <div class="row" style="min-height: 300px">
+      <div class="col-8 m-2 shadow rounded-2">
+        <th:block th:if="*{description != null}">
+          <h4 class="p-4">Description du poste</h4>
+          <p class="p-4" th:text="*{description}"></p>
+        </th:block>
+      </div>
+
+      <div class="col-8 m-2 pb-2 shadow rounded-2" >
+        <form th:action="@{/job/{id}(id=${jobOffer.id})}" method="post" th:object="${apply}">
+          <h3 class="p-3">Déposer une candidature</h3>
+          <div class="p-3 row">
+            <div class="col-6 px-2 form-floating">
+              <input type="text" class="form-control" id="lastname" name="lastname" th:field="*{lastname}" placeholder="" required>
+              <label for="lastname">Nom *</label>
+            </div>
+            <div class="col-6 px-2 form-floating">
+              <input type="text" class="form-control" id="firstname" name="firstname" th:field="*{firstname}" placeholder="" required>
+              <label for="firstname">Prénom *</label>
+            </div>
+          </div>
+          <div class="p-2">
+            <div class="form-floating">
+              <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="" required>
+              <label for="email">Adresse mail *</label>
+            </div>
+          </div>
+          <div class="p-2">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}" placeholder="">
+              <label for="email">Numéro de téléphone</label>
+            </div>
+          </div>
+          <div class="p-2">
+            <div class="form-floating">
+              <textarea class="form-control" name="coverLetter" id="coverLetter" th:field="*{coverLetter}" placeholder="" style="resize: none; min-height: 150px"></textarea>
+              <label for="coverLetter">Partagez nous vos motivations</label>
+            </div>
+          </div>
+          <div class="p-2">
+            <button class="w-100 btn btn-outline-primary py-2">Soumettre sa candidature</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

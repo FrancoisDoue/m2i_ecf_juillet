@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:fragment="bootstrap-import">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </th:block>
+    <title>Nos offres</title>
+</head>
+<body class="bg-light">
+    <div th:id="main" class="min-vh-100 bg-light">
+    <div class="container-fluid shadow-sm" th:fragment="header">
+        <header class="container d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a th:href="@{/}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-3">ECF Recruitment</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a th:href="@{/}" class="nav-link" aria-current="page">Nos offres</a></li>
+                <th:block th:if="${session.account != null}">
+                    <li class="nav-item"><a th:href="@{/recruiter/home}" class="nav-link">Espace recruteur</a></li>
+                    <li class="nav-item"><a th:href="@{/recruiter/logout}" class="nav-link active">Déconnexion</a></li>
+                </th:block>
+                <li th:if="${session.account == null}" class="nav-item"><a th:href="@{/recruiter/login}" class="nav-link">Espace recruteur</a></li>
+
+        <!--        <li class="nav-item"><a href="#" class="nav-link">test</a></li>-->
+            </ul>
+        </header>
+    </div>
+    <main class="container">
+        <h2>Nos offres d'emplois</h2>
+        <div class="row">
+            <h3 class="text-center mt-4" th:if="${jobOffers.isEmpty()}">Il n'y a pas d'offres d'emploi pour le moment</h3>
+            <div th:if="${!jobOffers.isEmpty()}" th:each="j : ${jobOffers}"
+                 class="col-sm-6 mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title" th:text="${j.title}">Special title treatment</h4>
+                        <a th:href="@{/job/{id}(id=${j.id})}" class="ms-auto d-block w-25 btn btn-outline-primary">Consulter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    </div>
+
+</body>
+</html>

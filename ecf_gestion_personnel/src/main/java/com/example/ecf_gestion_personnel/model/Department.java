@@ -17,9 +17,8 @@ import java.util.List;
 public class Department implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(nullable = false, unique = true)
     private String name;
-
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private List<Employee> employees;
 
