@@ -1,3 +1,28 @@
+# Application de gestion de personnel - API Rest
+## Comment l'installer
+
+### Prérequis
+- **JDK** et **Maven** installés.
+- **Apache Tomcat** téléchargé et configuré.
+### Étapes
+
+1. **Importer le projet dans IntelliJ**
+   - Ouvrez IntelliJ, sélectionnez "Import Project" et choisissez le fichier `pom.xml` pour importer le projet Maven.
+
+2. **Configurer Tomcat dans IntelliJ**
+   - Allez dans `Run > Edit Configurations`.
+   - Ajoutez une nouvelle configuration `Tomcat Server > Local`.
+   - Configurez le chemin d'installation de Tomcat et sélectionnez le module `votre-projet`.
+
+2. **Déployer et lancer l'application**
+   - Cliquez sur `Run` ou `Debug` dans IntelliJ.
+   - Accédez à l'application via `http://localhost:8080/ecf_gestion_personnel_war_exploded`.
+
+---
+
+[Script SQL](ecf_gestion_personnel\_sql\save.sql)
+
+## EndPoints
 | URI                     | METHOD | corps de la requête                 | description                                                    |
 |-------------------------|--------|-------------------------------------|----------------------------------------------------------------|
 | /api/employees          | GET    | *aucun*                             | Affiche tous les employés                                      |
@@ -115,3 +140,6 @@ uri: `/api/positions`
   "jobTitle": "Nom du poste"
 }
 ```
+---
+# Application de recrutement avec Spring et Thymeleaf
+...
