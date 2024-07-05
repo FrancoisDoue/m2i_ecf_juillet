@@ -20,7 +20,7 @@
 
 ---
 
-[Script SQL](ecf_gestion_personnel\_sql\save.sql)
+## Vous pouvez utiliser ce [script SQL](ecf_gestion_personnel\_sql\save.sql) afin de peupler votre base de données
 
 ## EndPoints
 | URI                     | METHOD | corps de la requête                 | description                                                    |
