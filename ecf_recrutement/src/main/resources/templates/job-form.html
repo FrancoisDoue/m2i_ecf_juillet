@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <th:block th:replace="~{index::bootstrap-import}"></th:block>
-    <title>Recruteur - Connexion</title>
+    <title>Nouvelle offre</title>
 </head>
 <body class="bg-light">
 <div th:id="main" class="min-vh-100 bg-light">
     <th:block th:replace="~{index::header}"></th:block>
     <main class="container">
-        <form class="mt-5 m-auto p-4 w-50 shadow rounded-1" th:action="@{/recruiter/login}" method="post" th:object="${recruiterAccount}">
-            <h3 class="text-center my-3">Connexion à l'espace recruteur</h3>
+        <form class="mt-5 m-auto p-4 w-50 shadow rounded-1" method="post" th:action="@{/offer}" th:object="${offer}">
+            <h3 class="text-center my-3" th:text="${offer.id == 0 ? 'Nouvelle offre d\'emploi' : 'Modifier l\'offre d\'emploi'}"></h3>
             <hr>
             <div class="p-2">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="login" name="login" th:field="*{login}" placeholder="">
-                    <label for="login">Identifiant</label>
+                    <input type="text" class="form-control" id="title" name="title" th:field="*{title}" placeholder="">
+                    <label for="title">Intitulé de l'offre</label>
                 </div>
             </div>
             <div class="p-2">
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="">
-                    <label for="password">Mot de passe</label>
+                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}" placeholder="">
+                    <label for="description">Description de l'offre</label>
                 </div>
             </div>
             <hr>

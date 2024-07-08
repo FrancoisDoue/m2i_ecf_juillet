@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="~{index::bootstrap-import}"></th:block>
+    <title>Recruteur - Accueil</title>
+</head>
+<body class="bg-light">
+<div th:id="main" class="min-vh-100 bg-light">
+    <th:block th:replace="~{index::header}"></th:block>
+    <main class="container">
+        <h2>Recruteur - home</h2>
+        <div class="row">
+            <div class="col-6 p-2">
+                <div class="card shadow-sm ">
+                    <div class="card-header bg-body">
+                        <h4 class="card-title text-center">Gestion des offres d'emploi</h4>
+                    </div>
+                    <div class="card-body">
+                        <p th:if="${offers.isEmpty()}" class="card-text">Il n'y a pas d'offres pour le moment</p>
+                        <ul class="list-group list-group-flush" th:if="${!offers.isEmpty()}">
+<!--                            <li class="list-group-item">An item</li>-->
+                            <li class="list-group-item" th:each="o : ${offers}" th:object="${o}">
+                                <span th:text="*{title}"></span> <a class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-right"></i>modifier</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-body">
+                        <a th:href="@{/offer}" class="ms-auto d-block w-25 btn btn-outline-primary">Créer une offre</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6 p-2">
+
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

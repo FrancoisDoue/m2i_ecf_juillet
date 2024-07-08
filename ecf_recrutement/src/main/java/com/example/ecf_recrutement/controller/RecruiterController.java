@@ -43,4 +43,11 @@ public class RecruiterController {
         return "redirect:/";
     }
 
+    @GetMapping("/home")
+    public String home(Model model) {
+        if (!authService.isLogged()) return "redirect:/recruiter/login";
+        model.addAttribute("offers", jobOfferService.getAllJobOffers());
+        return "recruiter-home";
+    }
+
 }
